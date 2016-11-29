@@ -18,6 +18,11 @@ public class AHibernateUtil {
 					.configure("com_001/hibernate4/annotation/hibernate.cfg.xml");
 			StandardServiceRegistryBuilder ssrBuilder = new StandardServiceRegistryBuilder();
 			Properties settings = cfg.getProperties();
+			/*
+			 * for (String key : settings.stringPropertyNames()) { String value
+			 * = settings.getProperty(key); System.out.println(key + " => " +
+			 * value); }
+			 */
 			ssrBuilder = ssrBuilder.applySettings(settings);
 			StandardServiceRegistry ssRegistry = ssrBuilder.build();
 			factory = cfg.buildSessionFactory(ssRegistry);

@@ -22,7 +22,6 @@ public class Prog2B {
 					+ "\t" + customer.getCity() + "\t" + customer.getBal());
 
 			tx.commit();
-
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
