@@ -1,4 +1,4 @@
-package com_001.hibernate4.annotation;
+package com_001.hibernate.annotation;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

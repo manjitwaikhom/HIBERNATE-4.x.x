@@ -1,4 +1,4 @@
-package com_001.hibernate4.annotation;
+package com_001.hibernate.annotation;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +10,7 @@ public class Prog2B {
 		Transaction tx = null;
 
 		try {
-			SessionFactory sf = com_001.hibernate4.annotation.AHibernateUtil
+			SessionFactory sf = com_001.hibernate.annotation.AHibernateUtil
 					.getSessionFactory();
 			Session session = sf.openSession();
 			tx = session.beginTransaction();
