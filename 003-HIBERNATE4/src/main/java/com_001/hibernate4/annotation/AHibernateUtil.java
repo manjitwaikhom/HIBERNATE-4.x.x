@@ -16,14 +16,16 @@ public class AHibernateUtil {
 			Configuration cfg = new Configuration();
 			cfg = cfg
 					.configure("com_001/hibernate4/annotation/hibernate.cfg.xml");
-			StandardServiceRegistryBuilder ssrBuilder = new StandardServiceRegistryBuilder();
+
 			Properties settings = cfg.getProperties();
 			/*
 			 * for (String key : settings.stringPropertyNames()) { String value
 			 * = settings.getProperty(key); System.out.println(key + " => " +
 			 * value); }
 			 */
+			StandardServiceRegistryBuilder ssrBuilder = new StandardServiceRegistryBuilder();
 			ssrBuilder = ssrBuilder.applySettings(settings);
+
 			StandardServiceRegistry ssRegistry = ssrBuilder.build();
 			factory = cfg.buildSessionFactory(ssRegistry);
 		} catch (Exception e) {
