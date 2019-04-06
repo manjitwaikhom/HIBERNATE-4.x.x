@@ -6,13 +6,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class StudentDao {
-    public void saveStudent(Student student) {
+    public void persistStudent(Student student) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // save the student object
-            session.save(student);
+            session.persist(student);
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
