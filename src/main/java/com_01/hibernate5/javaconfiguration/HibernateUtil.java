@@ -34,9 +34,8 @@ public class HibernateUtil {
 	 */
 
 	
-	
+	// Hibernate 5.x.x session factory creation
 	private static SessionFactory sessionFactory;
-
 	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
 			try {
@@ -54,10 +53,8 @@ public class HibernateUtil {
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Student.class);
 				
-				// Hibernate 5.x.x session factory creation
 				StandardServiceRegistryBuilder serviceRegistryBuilder=new StandardServiceRegistryBuilder();
-				Properties properties=configuration.getProperties();
-				serviceRegistryBuilder.applySettings(properties);
+				serviceRegistryBuilder.applySettings(settings);
 				ServiceRegistry serviceRegistry=serviceRegistryBuilder.build();
 				
 				sessionFactory = configuration.buildSessionFactory(serviceRegistry);
