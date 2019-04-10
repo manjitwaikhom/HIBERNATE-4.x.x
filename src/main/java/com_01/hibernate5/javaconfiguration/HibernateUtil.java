@@ -3,6 +3,7 @@ package com_01.hibernate5.javaconfiguration;
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
@@ -45,7 +46,32 @@ public class HibernateUtil {
     }
 	*/
 	
-	// Hibernate 5.x.x session factory creation
+	/*
+	  Hibernate 5.x.x session factory creation 
+	  
+	private static SessionFactory sessionFactory5;
+    public static SessionFactory getSessionFactory5() {
+        if (sessionFactory5 == null) {
+            // loads configuration and mappings
+            Configuration configuration = new Configuration();
+            configuration=configuration.configure();
+            
+            Properties settings=configuration.getProperties();
+            
+            StandardServiceRegistryBuilder stdServiceRegBuilder=new StandardServiceRegistryBuilder();
+            
+            stdServiceRegBuilder=stdServiceRegBuilder.applySettings(settings);
+            StandardServiceRegistry stdServiceReg=stdServiceRegBuilder.build();
+           
+            // builds a session factory from the service registry
+            sessionFactory5 = configuration.buildSessionFactory(stdServiceReg);           
+        }
+         
+        return sessionFactory5;
+    }
+	*/
+	
+	// Hibernate 5.x.x session factory creation working code
 	private static SessionFactory sessionFactory;
 
 	public static SessionFactory getSessionFactory() {
