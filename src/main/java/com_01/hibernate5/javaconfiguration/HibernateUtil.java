@@ -8,35 +8,45 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+
 public class HibernateUtil {
 	
-	//Old style of creating session 
+	
+	// Hibernate 3.x.x style creating session factory : will not work in Hibernate 4.x.x and 5.x.x
 	/*
-	 * Configuration configuration = new Configuration();
-	 * configuration.configure(); 
-	 * SessionFactory sessionFactory = configuration.buildSessionFactory(); 
-	 * Session session = sessionFactory.openSession();
+	 try {
+
+		 SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		 Session session = sessionFactory.openSession();
+
+     } catch (Exception e) {
+	    System.err.println("Enitial SessionFactory creation failed" + e);
+     }
 	 */
 	
-	// Hibernate 4.x.x style creating session factory will not work in Hibernate 5.x.x
+	// Hibernate 4.x.x style creating session factory :  will not work in  5.x.x
 	/*
-	 * try { Configuration configuration = new Configuration(); Properties
-	 * properties=configuration.getProperties() configuration.configure();
-	 * 
-	 * ServiceRegistryBuilder registry = new ServiceRegistryBuilder();
-	 * registry.applySettings(properties); ServiceRegistry serviceRegistry =
-	 * registry.buildServiceRegistry(); SessionFactory sessionFactory =
-	 * configuration.buildSessionFactory(serviceRegistry);
-	 * 
-	 * } catch (Throwable th) {
-	 * System.err.println("Enitial SessionFactory creation failed" + th); throw new
-	 * ExceptionInInitializerError(th); }
-	 */
-
+	private static SessionFactory sessionFactory4;
+	 
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory4 == null) {
+            Configuration configuration = new Configuration().configure();
+            ServiceRegistryBuilder registry = new ServiceRegistryBuilder();
+            registry.applySettings(configuration.getProperties());
+            ServiceRegistry serviceRegistry = registry.buildServiceRegistry();
+             
+            sessionFactory4 = configuration.buildSessionFactory(serviceRegistry);           
+        }
+         
+        return sessionFactory4;
+    }
+	*/
 	
 	// Hibernate 5.x.x session factory creation
 	private static SessionFactory sessionFactory;
+
 	public static SessionFactory getSessionFactory() {
+
 		if (sessionFactory == null) {
 			try {
 				Configuration configuration = new Configuration();
@@ -52,11 +62,11 @@ public class HibernateUtil {
 				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Student.class);
-				
-				StandardServiceRegistryBuilder serviceRegistryBuilder=new StandardServiceRegistryBuilder();
+
+				StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
 				serviceRegistryBuilder.applySettings(settings);
-				ServiceRegistry serviceRegistry=serviceRegistryBuilder.build();
-				
+				ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
+
 				sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -64,4 +74,5 @@ public class HibernateUtil {
 		}
 		return sessionFactory;
 	}
+
 }
