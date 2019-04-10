@@ -16,11 +16,13 @@ public class HibernateUtil {
 	/*
 	 try {
 
-		 SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		 Session session = sessionFactory.openSession();
+		Configuration config=new Configuration();
+		config=config.configure();
+		SessionFactory sessionFactory = config.buildSessionFactory();
+		Session session = sessionFactory.openSession();
 
      } catch (Exception e) {
-	    System.err.println("Enitial SessionFactory creation failed" + e);
+	    System.err.println("Initial SessionFactory creation failed" + e);
      }
 	 */
 	
@@ -30,7 +32,8 @@ public class HibernateUtil {
 	 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory4 == null) {
-            Configuration configuration = new Configuration().configure();
+            Configuration configuration = new Configuration();
+            configuration=configuration.configure();
             ServiceRegistryBuilder registry = new ServiceRegistryBuilder();
             registry.applySettings(configuration.getProperties());
             ServiceRegistry serviceRegistry = registry.buildServiceRegistry();
