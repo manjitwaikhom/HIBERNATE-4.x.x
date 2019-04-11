@@ -30,15 +30,16 @@ public class EmployeeDao {
 
 	// to get Employee
 	public List<Employee> getEmployees() {
-		//Need to change some code in transaction related to transaction
 		Transaction transaction = null;
 		List<Employee> employeeList=null;
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction=session.beginTransaction();
 			
 			Query<Employee> query = session.createQuery("from Employee", Employee.class);
 			employeeList = query.list();
 			
+			transaction.commit();
 			session.close();
 		} catch (HibernateException e) {
 			if (transaction != null) {
