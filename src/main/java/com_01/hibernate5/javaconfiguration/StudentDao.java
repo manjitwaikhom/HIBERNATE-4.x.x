@@ -28,7 +28,6 @@ public class StudentDao {
 
 	// to get student
 	public List<Student> getStudents() {
-		Transaction transaction = null;
 		List<Student> studentsList=null;
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -36,9 +35,6 @@ public class StudentDao {
 			studentsList = query.list();
 			session.close();
 		} catch (HibernateException e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
 			e.printStackTrace();
 		}
 		
