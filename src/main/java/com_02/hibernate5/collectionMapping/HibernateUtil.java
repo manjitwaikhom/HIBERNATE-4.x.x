@@ -25,7 +25,7 @@ public class HibernateUtil {
 				settings.put(PASS, "admin");
 				settings.put(DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 				settings.put(HBM2DDL_AUTO, "create-drop");
-				settings.put(SHOW_SQL, "false");
+				settings.put(SHOW_SQL, "true");
 				
 				StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder();
 				registryBuilder.applySettings(settings);

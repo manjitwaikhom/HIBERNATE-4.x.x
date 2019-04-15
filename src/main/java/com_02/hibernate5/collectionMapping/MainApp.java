@@ -29,10 +29,12 @@ public class MainApp{
 		phones1.add(new Long(956029113));
 		phones1.add(new Long(906069267));
 		
-		Map<String,Long> refs1=new HashMap<String,Long>();
-		refs1.put("AA", new Long(11));
-		refs1.put("BB", new Long(12));
-		refs1.put("CC", new Long(12));
+		Map<String,String> background1=new HashMap<>();
+		background1.put("SCHOOL10", "Sawan Public School-CBSE");
+		background1.put("SCHOOL12", "Sawan Public School-CBSE");
+		background1.put("BACHELORS", "REC-VTU");
+		background1.put("MASTERS", "N-A");
+		background1.put("PHD", "N-A");
 		
 		//--------------Second set of data
 		
@@ -53,14 +55,16 @@ public class MainApp{
 		phones2.add(new Long(956029113));
 		phones2.add(new Long(906069267));
 		
-		Map<String,Long> refs2=new HashMap<String,Long>();
-		refs2.put("AAAAA", new Long(11));
-		refs2.put("BBAAA", new Long(12));
-		refs2.put("CCAAA", new Long(12));
+		Map<String,String> background2=new HashMap<>();
+		background2.put("SCHOOL10", "N-A");
+		background2.put("SCHOOL12", " FAIRVIEW HIGH SCHOOL");
+		background2.put("BACHELORS", "UNIVERSITY OF ALBERTA");
+		background2.put("MASTERS", "N-A");
+		background2.put("PHD", "MCGILL UNIVERSITY");
 		
 		
-		Student stu1=new Student("manjit","waikhom","bangalore","active",emails1,marks1,courses1,phones1,refs1);
-		Student stu2=new Student("Jordan","Peterson","Toronto","active",emails2,marks2,courses2,phones2,refs2);
+		Student stu1=new Student("manjit","waikhom","bangalore","active",emails1,marks1,courses1,phones1,background1);
+		Student stu2=new Student("Jordan","Peterson","Toronto","active",emails2,marks2,courses2,phones2,background2);
 	        HibernateTemplate.saveObject(stu1);
 	        HibernateTemplate.saveObject(stu2);
 	        System.out.println("Records Inserted");
@@ -82,7 +86,7 @@ public class MainApp{
 				}
 				System.out.println();
 				System.out.println(s.getPhones());
-				System.out.println(s.getRefs());
+				System.out.println(s.getBackground());
 				
 			}
 

@@ -78,17 +78,17 @@ public class Student {
 	
 
 	@ElementCollection
-	@OrderColumn(name="refs_index")
-	@CollectionTable(name="refs", joinColumns=@JoinColumn(name="studentid"))
-	@Column(name="refs")
+	@OrderColumn(name="background_index")
+	@CollectionTable(name="background", joinColumns=@JoinColumn(name="studentid"))
+	@Column(name="background")
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private Map <String,Long> refs;
+	private Map <String,String> background;
 
 
 	public Student(){}
 	public Student(String fname, String lname, String city,
 			String status, List<String> emails, List<Integer> marks,
-			String[] courses, Set<Long> phones, Map<String, Long> refs) {
+			String[] courses, Set<Long> phones, Map<String, String> background) {
 		super();
 		
 		this.fname = fname;
@@ -99,7 +99,7 @@ public class Student {
 		this.marks = marks;
 		this.courses = courses;
 		this.phones = phones;
-		this.refs = refs;
+		this.background = background;
 	}
 	public int getSid() {
 		return sid;
@@ -155,14 +155,11 @@ public class Student {
 	public void setPhones(Set<Long> phones) {
 		this.phones = phones;
 	}
-	public Map<String,Long> getRefs() {
-		return refs;
+	public Map<String, String> getBackground() {
+	    return background;
 	}
-	public void setRefs(Map<String, Long> refs) {
-		this.refs = refs;
+	public void setBackground(Map<String, String> background) {
+	    this.background = background;
 	}
-
-	
-	
 	
 }
