@@ -49,7 +49,6 @@ public class Student {
 	
 	@ElementCollection
 	@CollectionTable(name="emails", joinColumns=@JoinColumn(name="studentid"))
-	@Column(name="emailid")
 	@OrderColumn(name="emails_index")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List <String> emails;
@@ -57,21 +56,18 @@ public class Student {
 	@ElementCollection
 	@OrderColumn(name="marks_index")
 	@CollectionTable(name="marks", joinColumns=@JoinColumn(name="studentid"))
-	@Column(name="marks")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List <Integer> marks;
 	
 	@ElementCollection
 	@CollectionTable(name="courses", joinColumns=@JoinColumn(name="studentid"))
 	@OrderColumn(name="course_index")
-	@Column(name="courses")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private String[] courses;
 	
 	@ElementCollection
 	@OrderColumn(name="phones_index")
 	@CollectionTable(name="phones", joinColumns=@JoinColumn(name="studentid"))
-	@Column(name="phones")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set <Long> phones;
 	
@@ -80,7 +76,6 @@ public class Student {
 	@ElementCollection
 	@OrderColumn(name="background_index")
 	@CollectionTable(name="background", joinColumns=@JoinColumn(name="studentid"))
-	@Column(name="background")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Map <String,String> background;
 
