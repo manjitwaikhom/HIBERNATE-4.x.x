@@ -89,7 +89,7 @@ public class MainApp{
 				System.out.println(s.getBackground());
 				
 			}
-
+                    HibernateTemplate.shutDown();
 	}
 
 }

@@ -93,6 +93,9 @@ public class HibernateTemplate {
 		return o;
 	}
 	
+	public static void shutDown(){
+	    HibernateUtil.shutdown();
+	}
 	
 
 }
