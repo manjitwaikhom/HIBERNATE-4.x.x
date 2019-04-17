@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<data-sources>
-	<data-source id="mysql8-16a177ee63c-5f1e132fd4073b3" provider="mysql" driver="mysql8" name="MySQL 8+ - hibernate5_db" save-password="true" read-only="false">
-		<connection host="localhost" port="3306" server="" database="hibernate5_db" url="jdbc:mysql://localhost:3306/hibernate5_db" user="root" password="EgALKU8jpQ==" home="C:\Program Files\MySQL\MySQL Router 8.0" type="dev"/>
-	</data-source>
-	<filters/>
-</data-sources>
