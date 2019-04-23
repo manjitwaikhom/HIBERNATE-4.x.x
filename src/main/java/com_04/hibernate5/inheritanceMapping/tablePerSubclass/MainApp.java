@@ -1,4 +1,4 @@
-package com_03.hibernate5.inheritanceMapping.tablePerSubclass;
+package com_04.hibernate5.inheritanceMapping.tablePerSubclass;
 
 import java.util.ArrayList;
 import java.util.HashSet;

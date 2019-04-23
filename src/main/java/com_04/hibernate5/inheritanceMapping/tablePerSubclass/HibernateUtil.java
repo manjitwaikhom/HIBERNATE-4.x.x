@@ -1,4 +1,4 @@
-package com_03.hibernate5.inheritanceMapping.tablePerSubclass;
+package com_04.hibernate5.inheritanceMapping.tablePerSubclass;
 
 import static org.hibernate.cfg.AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS;
 import static org.hibernate.cfg.AvailableSettings.DIALECT;

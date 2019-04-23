@@ -1,4 +1,4 @@
-package com_01.hibernate5.collectionMapping;
+package com_03.hibernate5.collectionMapping;
 
 import static org.hibernate.cfg.AvailableSettings.*;
 
