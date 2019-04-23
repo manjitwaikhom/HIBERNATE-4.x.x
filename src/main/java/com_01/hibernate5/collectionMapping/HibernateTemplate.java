@@ -1,4 +1,4 @@
-package com_02.hibernate5.collectionMapping;
+package com_01.hibernate5.collectionMapping;
 
 import java.io.Serializable;
 import java.util.List;
