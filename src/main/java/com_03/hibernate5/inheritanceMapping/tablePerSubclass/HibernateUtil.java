@@ -30,7 +30,7 @@ public class HibernateUtil {
 				// Hibernate settings equivalent to hibernate.cfg.xml's properties
 				Properties settings = new Properties();
 				settings.put(DRIVER, "com.mysql.cj.jdbc.Driver");
-				settings.put(URL, "jdbc:mysql://localhost:3306/hibernate5_db?useSSL=false");
+				settings.put(URL, "jdbc:mysql://localhost:3306/hibernate5inheritanceMappingtablePerSubclass_db?useSSL=false");
 				settings.put(USER, "root");
 				settings.put(PASS, "admin");
 				settings.put(DIALECT, "org.hibernate.dialect.MySQL5Dialect");

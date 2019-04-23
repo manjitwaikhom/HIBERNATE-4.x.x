@@ -21,7 +21,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 
 @Entity
-@Table(name="students_inheritance_map_table")
+@Table(name="students_table")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Student {
 	
