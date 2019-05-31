@@ -43,6 +43,13 @@ public class StudentDao {
 			e.printStackTrace();
 		}
 		
+		/*
+		 * System.out.println(HibernateUtil.getSessionFactory().getStatistics().
+		 * getEntityFetchCount());
+		 * System.out.println(HibernateUtil.getSessionFactory().getStatistics().
+		 * getSecondLevelCacheHitCount());
+		 */
+		
 		return student;
 	}
 
