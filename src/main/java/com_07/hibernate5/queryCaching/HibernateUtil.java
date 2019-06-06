@@ -1,6 +1,6 @@
 package com_07.hibernate5.queryCaching;
 
-import static org.hibernate.cfg.AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS;
+import static org.hibernate.cfg.AvailableSettings.CACHE_REGION_FACTORY;
 import static org.hibernate.cfg.AvailableSettings.DIALECT;
 import static org.hibernate.cfg.AvailableSettings.DRIVER;
 import static org.hibernate.cfg.AvailableSettings.HBM2DDL_AUTO;
@@ -9,12 +9,14 @@ import static org.hibernate.cfg.AvailableSettings.SHOW_SQL;
 import static org.hibernate.cfg.AvailableSettings.URL;
 import static org.hibernate.cfg.AvailableSettings.USER;
 import static org.hibernate.cfg.AvailableSettings.USE_QUERY_CACHE;
-import static org.hibernate.cfg.AvailableSettings.*;
+import static org.hibernate.cfg.AvailableSettings.USE_SECOND_LEVEL_CACHE;
+
+import java.util.Properties;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
 
@@ -38,9 +40,17 @@ public class HibernateUtil {
 		configuration.setProperty(CACHE_REGION_FACTORY, "org.hibernate.cache.ehcache.EhCacheRegionFactory");
 		configuration.setProperty(USE_QUERY_CACHE, "true");
 		configuration.addAnnotatedClass(Student.class);
+		
+		
+		Properties properties=configuration.getProperties();
 
-		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-			.applySettings(configuration.getProperties()).build();
+		StandardServiceRegistryBuilder registryBuilder=new StandardServiceRegistryBuilder();
+		registryBuilder.applySettings(properties);
+		StandardServiceRegistry serviceRegistry=registryBuilder.build();
+		
+		//shortened code
+		/*ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+			.applySettings(configuration.getProperties()).build();*/
 
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 	    } catch (Exception e) {
