@@ -2,11 +2,16 @@ package com_08.hibernate5.criteria;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 
 public class ProductDao {
     // to save student
@@ -81,6 +86,28 @@ public class ProductDao {
 	    Criteria criteria = session.createCriteria(className);
 	    criteria.add(Restrictions.ne("category", conditions));
 	    productsList = criteria.list();
+	    session.close();
+
+	} catch (HibernateException e) {
+	    e.printStackTrace();
+	}
+
+	return productsList;
+    }
+    
+    //fetch using Hibernate 5 JPA style
+    public List<Product> fetchProductUsingCriteriaBuilder(Class<Product> resultClass) {
+	List<Product> productsList = null;
+	try {
+	    Session session = HibernateUtil.getSessionFactory().openSession();
+	    
+	    CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+	    CriteriaQuery<Product> criteriaQuery=criteriaBuilder.createQuery(resultClass);
+	    Root<Product> root=criteriaQuery.from(resultClass);
+	    criteriaQuery.select(root);
+	    
+	    Query<Product> query = session.createQuery(criteriaQuery);
+	    productsList = query.getResultList();
 	    session.close();
 
 	} catch (HibernateException e) {

@@ -21,7 +21,7 @@ public class MainApp {
             System.out.println("------------Records inserted--------------");
             
             
-            //fetching using simple criteria
+            //fetching using simple criteria Hibernate 4
             System.out.println("-------fetching using simple criteria-----------");
             List<Product> products1 = productDao.fetchProductUsingCriteria(Product.class);
             
@@ -44,6 +44,16 @@ public class MainApp {
             List<Product> products3 = productDao.fetchProductUsingCriteriaRestrictionsNe(Product.class,"edibles");
             
             for(Product p:products3) {
+        	System.out.println(p);
+            }
+            System.out.println("--------------------------------------------");
+            
+            
+          //fetching using simple criteria Hibernate 5.x
+            System.out.println("-------fetching using UsingCriteriaBuilder Hibernate 5.x-----------");
+            List<Product> products4 = productDao.fetchProductUsingCriteriaBuilder(Product.class);
+            
+            for(Product p:products4) {
         	System.out.println(p);
             }
             System.out.println("--------------------------------------------");
