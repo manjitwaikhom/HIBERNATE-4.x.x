@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Criteria;
@@ -115,6 +117,32 @@ public class ProductDao {
 	}
 
 	return productsList;
+    }
+    
+  //fetch using Hibernate 5 JPA style
+    public List<Product> fetchProductUsingCriteriaBuilderGreaterThanCondition(Class<Product> resultClass,int id) {
+	List<Product> productsList = null;
+	try {
+	    Session session = HibernateUtil.getSessionFactory().openSession();
+
+ 	    CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+	    CriteriaQuery<Product> criteriaQuery=criteriaBuilder.createQuery(resultClass);
+
+ 	    Root<Product> root=criteriaQuery.from(resultClass);
+	    Path<Number> path=root.get("id");
+	    Predicate predicate=criteriaBuilder.gt(path, 2);
+
+ 	    criteriaQuery=criteriaQuery.select(root).where(predicate);
+
+ 	    Query<Product> query = session.createQuery(criteriaQuery);
+	    productsList = query.getResultList();
+	    session.close();
+
+ 	} catch (HibernateException e) {
+	    e.printStackTrace();
+	}
+
+ 	return productsList;
     }
 
 }

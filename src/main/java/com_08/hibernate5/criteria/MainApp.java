@@ -59,7 +59,15 @@ public class MainApp {
             System.out.println("--------------------------------------------");
             
             
-            
+            //fetching using UsingCriteriaBuilder gt() Hibernate 5.x
+            System.out.println("-------fetching using UsingCriteriaBuilder gt() Hibernate 5.x-----------");
+            List<Product> products5 = productDao.fetchProductUsingCriteriaBuilderGreaterThanCondition(Product.class,2);
+
+             for(Product p:products5) {
+        	System.out.println(p);
+            }
+            System.out.println("--------------------------------------------");
+
             
             
             
