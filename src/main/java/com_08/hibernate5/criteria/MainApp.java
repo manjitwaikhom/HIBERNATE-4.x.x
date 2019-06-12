@@ -21,7 +21,7 @@ public class MainApp {
             System.out.println("------------Records inserted--------------");
             
             
-            //fetching using simple criteria Hibernate 4
+            //fetching using simple criteria Hibernate prior to Hibernate 5.2.x 
             System.out.println("-------fetching using simple criteria-----------");
             List<Product> products1 = productDao.fetchProductUsingCriteria(Product.class);
             
@@ -30,7 +30,7 @@ public class MainApp {
             }
             System.out.println("--------------------------------------------");
             
-          //fetching using criteria restrictions eq()
+          //fetching using criteria restrictions eq() prior to Hibernate 5.2.x 
             System.out.println("-------fetching  edibles only-----------");
             List<Product> products2 = productDao.fetchProductUsingCriteriaRestrictionsEq(Product.class,"edibles");
             
@@ -39,7 +39,7 @@ public class MainApp {
             }
             System.out.println("--------------------------------------------");
             
-          //fetching using criteria restrictions ne()
+          //fetching using criteria restrictions ne() prior to Hibernate 5.2.x 
             System.out.println("-------fetching  non edibles only-----------");
             List<Product> products3 = productDao.fetchProductUsingCriteriaRestrictionsNe(Product.class,"edibles");
             
@@ -49,7 +49,7 @@ public class MainApp {
             System.out.println("--------------------------------------------");
             
             
-          //fetching using simple criteria Hibernate 5.x
+          //fetching using simple criteria Hibernate 5.2.x and later
             System.out.println("-------fetching using UsingCriteriaBuilder Hibernate 5.x-----------");
             List<Product> products4 = productDao.fetchProductUsingCriteriaBuilder(Product.class);
             
@@ -59,7 +59,7 @@ public class MainApp {
             System.out.println("--------------------------------------------");
             
             
-            //fetching using UsingCriteriaBuilder gt() Hibernate 5.x
+            //fetching using UsingCriteriaBuilder gt() Hibernate 5.2.x and later
             System.out.println("-------fetching using UsingCriteriaBuilder gt() Hibernate 5.x-----------");
             List<Product> products5 = productDao.fetchProductUsingCriteriaBuilderGreaterThanCondition(Product.class,2);
 

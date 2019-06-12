@@ -47,7 +47,7 @@ public class ProductDao {
 	return student;
     }
 
-    // to get product fetchProductUsingCriteria
+    // to get product fetchProductUsingCriteria prior to Hibernate 5.2.x 
     public List<Product> fetchProductUsingCriteria(Class<?> className) {
 	List<Product> productsList = null;
 	try {
@@ -63,7 +63,7 @@ public class ProductDao {
 	return productsList;
     }
 
-    // to get product fetchProductUsingCriteria restrictions eq()
+    // to get product fetchProductUsingCriteria restrictions eq() prior to Hibernate 5.2.x 
     public List<Product> fetchProductUsingCriteriaRestrictionsEq(Class<?> className, String conditions) {
 	List<Product> productsList = null;
 	try {
@@ -80,7 +80,7 @@ public class ProductDao {
 	return productsList;
     }
 
-    // to get product fetchProductUsingCriteria restrictions ne()
+    // to get product fetchProductUsingCriteria restrictions ne() prior to Hibernate 5.2.x 
     public List<Product> fetchProductUsingCriteriaRestrictionsNe(Class<?> className, String conditions) {
 	List<Product> productsList = null;
 	try {
@@ -96,18 +96,18 @@ public class ProductDao {
 
 	return productsList;
     }
-    
-    //fetch using Hibernate 5 JPA style
+
+    //fetch using Hibernate 5 JPA style  Hibernate 5.2.x and later
     public List<Product> fetchProductUsingCriteriaBuilder(Class<Product> resultClass) {
 	List<Product> productsList = null;
 	try {
 	    Session session = HibernateUtil.getSessionFactory().openSession();
-	    
+
 	    CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-	    CriteriaQuery<Product> criteriaQuery=criteriaBuilder.createQuery(resultClass);
-	    Root<Product> root=criteriaQuery.from(resultClass);
+	    CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(resultClass);
+	    Root<Product> root = criteriaQuery.from(resultClass);
 	    criteriaQuery.select(root);
-	    
+
 	    Query<Product> query = session.createQuery(criteriaQuery);
 	    productsList = query.getResultList();
 	    session.close();
@@ -118,31 +118,31 @@ public class ProductDao {
 
 	return productsList;
     }
-    
-  //fetch using Hibernate 5 JPA style
-    public List<Product> fetchProductUsingCriteriaBuilderGreaterThanCondition(Class<Product> resultClass,int id) {
+
+    //fetch using Hibernate 5 JPA style Hibernate 5.2.x and later
+    public List<Product> fetchProductUsingCriteriaBuilderGreaterThanCondition(Class<Product> resultClass, int id) {
 	List<Product> productsList = null;
 	try {
 	    Session session = HibernateUtil.getSessionFactory().openSession();
 
- 	    CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-	    CriteriaQuery<Product> criteriaQuery=criteriaBuilder.createQuery(resultClass);
-
- 	    Root<Product> root=criteriaQuery.from(resultClass);
-	    Path<Number> path=root.get("id");
-	    Predicate predicate=criteriaBuilder.gt(path, 2);
-
- 	    criteriaQuery=criteriaQuery.select(root).where(predicate);
-
- 	    Query<Product> query = session.createQuery(criteriaQuery);
+	    CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+	    CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(resultClass);
+	    
+	    Root<Product> root = criteriaQuery.from(resultClass);
+	    Path<Number> path = root.get("id");
+	    Predicate predicate = criteriaBuilder.gt(path, 2);
+	    
+	    criteriaQuery = criteriaQuery.select(root).where(predicate);
+	    
+	    Query<Product> query = session.createQuery(criteriaQuery);
 	    productsList = query.getResultList();
 	    session.close();
 
- 	} catch (HibernateException e) {
+	} catch (HibernateException e) {
 	    e.printStackTrace();
 	}
 
- 	return productsList;
+	return productsList;
     }
 
 }
